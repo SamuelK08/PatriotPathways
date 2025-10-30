@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - Patriot Pathways{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-4 fw-bold">Find Your Pathway</h1>
+        <p class="fs-4">A nationwide directory of healthcare, benefits, housing, and support resources for America's veterans.</p>
+        
+        <div class="col-md-6 mx-auto mt-4">
+            <label for="stateSelector" class="form-label fs-5">Begin by selecting your state:</label>
+            <select class="form-select form-select-lg" id="stateSelector">
+                <option selected disabled>Choose a state...</option>
+                {% for code, name in states.items() %}
+                <option value="{{ code }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 text-center">
+    <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-heart-pulse-fill fs-1 text-primary"></i>
+                <h2 class="card-title mt-3">Healthcare</h2>
+                <a href="#" class="btn btn-primary category-link disabled" data-category="healthcare">Find Healthcare <i class="bi bi-arrow-right-circle"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-briefcase-fill fs-1 text-success"></i>
+                <h2 class="card-title mt-3">Benefits</h2>
+                <a href="#" class="btn btn-success category-link disabled" data-category="employment">Find Benefits <i class="bi bi-arrow-right-circle"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-house-door-fill fs-1 text-warning"></i>
+                <h2 class="card-title mt-3">Housing</h2>
+                <a href="#" class="btn btn-warning category-link disabled" data-category="housing">Find Housing <i class="bi bi-arrow-right-circle"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-people-fill fs-1 text-info"></i>
+                <h2 class="card-title mt-3">Vet Centers</h2>
+                <a href="#" class="btn btn-info category-link disabled" data-category="mental-health">Find Vet Centers <i class="bi bi-arrow-right-circle"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stateSelector = document.getElementById('stateSelector');
+        const categoryLinks = document.querySelectorAll('.category-link');
+
+        stateSelector.addEventListener('change', function() {
+            const selectedState = this.value;
+
+            if (selectedState) {
+                categoryLinks.forEach(link => {
+                    const category = link.getAttribute('data-category');
+                    link.href = `/${selectedState}/${category}`;
+                    link.classList.remove('disabled');
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

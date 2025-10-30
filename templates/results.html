@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results for "{{ query }}" - Patriot Pathways{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="display-5 mb-0">Smart Search Results</h1>
+        <p class="fs-4 text-muted">Showing results for: "{{ query }}"</p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Home
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <i class="bi bi-robot"></i> AI-Powered Response
+    </div>
+    <div class="card-body">
+        <pre style="white-space: pre-wrap; font-family: inherit; font-size: 1rem;">{{ response | safe }}</pre>
+    </div>
+</div>
+{% endblock %}
