@@ -7,7 +7,7 @@ import time
 
 print("Starting data population from the VA Lighthouse API...")
 
-API_KEY = "p23W58tBiYnZNtMB2UP16ta4Eu2qTQLA" 
+API_KEY = "" 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, 'resources.db')
